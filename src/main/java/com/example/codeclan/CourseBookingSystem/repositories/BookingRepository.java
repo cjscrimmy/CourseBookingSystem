@@ -10,4 +10,3 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     List<Booking> findByDate(String date);
 }
 
-//    Get all bookings for a given date

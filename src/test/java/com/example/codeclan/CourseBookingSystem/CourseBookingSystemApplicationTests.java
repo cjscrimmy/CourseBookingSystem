@@ -39,4 +39,9 @@ class CourseBookingSystemApplicationTests {
 		assertTrue(foundBookings.size() > 0);
 	}
 
+	@Test
+	public void canFindCoursesByRating(){
+		List<Course> foundCourses = courseRepository.findByRating(5);
+		assertTrue(foundCourses.size() > 0);
+	}
 }
