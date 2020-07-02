@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CustomerController {
@@ -59,4 +61,15 @@ public class CustomerController {
         customerRepository.deleteById(id);
         return new ResponseEntity(id, HttpStatus.OK);
     }
+
+    @PutMapping(value = "/customers/{id}")
+    public ResponseEntity updateCustomer(@RequestBody Customer customer, @PathVariable Long id){
+        Optional<Customer> foundCustomer = customerRepository.findById(id);
+        foundCustomer.get().setName(customer.getName());
+        foundCustomer.get().setTown(customer.getTown());
+        foundCustomer.get().setAge(customer.getAge());
+        customerRepository.save(foundCustomer.get());
+        return new ResponseEntity(id, HttpStatus.OK);
+    }
+
 }
