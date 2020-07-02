@@ -1,6 +1,7 @@
 package com.example.codeclan.CourseBookingSystem.controllers;
 
 import com.example.codeclan.CourseBookingSystem.models.Booking;
+import com.example.codeclan.CourseBookingSystem.models.Customer;
 import com.example.codeclan.CourseBookingSystem.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,5 +34,11 @@ public class BookingController {
     public ResponseEntity<Booking> postBooking(@RequestBody Booking booking){
         bookingRepository.save(booking);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/bookings/{id}")
+    public ResponseEntity<Booking> deleteBooking(@PathVariable Long id){
+        bookingRepository.deleteById(id);
+        return new ResponseEntity(id, HttpStatus.OK);
     }
 }
