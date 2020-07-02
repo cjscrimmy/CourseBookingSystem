@@ -71,4 +71,10 @@ class CourseBookingSystemApplicationTests {
 		Course foundCourse = courseRepository.findByName("Java");
 		assertEquals("Java", foundCourse.getName());
 	}
+
+	@Test
+	public void canFindCustomersByBookingsCourseTown(){
+		List<Customer> foundCustomers = customerRepository.findByBookingsCourseTown("Edinburgh");
+		assertTrue(foundCustomers.size() > 0);
+	}
 }
