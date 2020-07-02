@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BookingController {
@@ -39,6 +40,16 @@ public class BookingController {
     @DeleteMapping(value = "/bookings/{id}")
     public ResponseEntity<Booking> deleteBooking(@PathVariable Long id){
         bookingRepository.deleteById(id);
+        return new ResponseEntity(id, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "bookings/{id}")
+    public ResponseEntity updateBooking(@RequestBody Booking booking, @PathVariable Long id){
+        Optional<Booking> foundBooking = bookingRepository.findById(id);
+        foundBooking.get().setDate(booking.getDate());
+        foundBooking.get().setCourse(booking.getCourse());
+        foundBooking.get().setCustomer(booking.getCustomer());
+        bookingRepository.save(foundBooking.get());
         return new ResponseEntity(id, HttpStatus.OK);
     }
 }
