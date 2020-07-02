@@ -51,4 +51,11 @@ class CourseBookingSystemApplicationTests {
 		List<Course> foundCourses = courseRepository.findByBookingsCustomer(foundCustomer);
 		assertTrue(foundCourses.size() > 0);
 	}
+
+	@Test
+	public void canFindCustomersByCourse(){
+		Course foundCourse = courseRepository.getOne(1L);
+		List<Customer> foundCustomers = customerRepository.findByBookingsCourse(foundCourse);
+		assertTrue(foundCustomers.size() > 0);
+	}
 }
