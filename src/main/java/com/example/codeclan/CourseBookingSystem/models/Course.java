@@ -3,7 +3,6 @@ package com.example.codeclan.CourseBookingSystem.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 

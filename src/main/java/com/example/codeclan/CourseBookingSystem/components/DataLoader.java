@@ -95,6 +95,11 @@ public class DataLoader implements ApplicationRunner {
         ruby.addBooking(booking4);
         pauline.addBooking(booking4);
         bookingRepository.save(booking4);
+
+        Booking booking5 = new Booking("10-01-2020", java, tony);
+        java.addBooking(booking5);
+        tony.addBooking(booking5);
+        bookingRepository.save(booking5);
     }
 
 }
