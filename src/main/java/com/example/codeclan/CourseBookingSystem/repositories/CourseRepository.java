@@ -1,4 +1,7 @@
 package com.example.codeclan.CourseBookingSystem.repositories;
 
-public interface CourseRepository {
+import com.example.codeclan.CourseBookingSystem.models.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CourseRepository extends JpaRepository<Course, Long> {
 }
