@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CourseController {
@@ -48,6 +49,16 @@ public class CourseController {
     @DeleteMapping(value = "/courses/{id}")
     public ResponseEntity<Course> deleteCourse(@PathVariable Long id){
         courseRepository.deleteById(id);
+        return new ResponseEntity(id, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/courses/{id}")
+    public ResponseEntity updateCourse(@RequestBody Course course, @PathVariable Long id){
+        Optional<Course> foundCourse = courseRepository.findById(id);
+        foundCourse.get().setName(course.getName());
+        foundCourse.get().setTown(course.getTown());
+        foundCourse.get().setRating(course.getRating());
+        courseRepository.save(foundCourse.get());
         return new ResponseEntity(id, HttpStatus.OK);
     }
 }
